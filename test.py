@@ -17,15 +17,24 @@ class TestExMethods(unittest.TestCase):
         print('Michael')
         brth_dt = datetime.datetime(1970, 3, 30)
         strt_dt = datetime.datetime(2018, 10, 14)
-        wk_py = 1058
+        wk_py = 101300 # This is a completely made up number
         self.assertEqual( calc.calculate_redundancy(brth_dt, strt_dt, wk_py), 0)
 
-    def test_spyros(self):
-        print('Spyros')
+    def test_vincent(self):
+        print('Vincent')
         brth_dt = datetime.datetime(1972, 3, 30)
-        strt_dt = datetime.datetime(2011, 2, 27)
-        wk_py = 1169
-        self.assertEqual( calc.calculate_redundancy(brth_dt, strt_dt, wk_py), 14028.00)
+        strt_dt = datetime.datetime(2011, 3, 27)
+        wk_py = 120100
+        self.assertEqual( calc.calculate_redundancy(brth_dt, strt_dt, wk_py), 1501250)
+
+    def test_joe(self):
+        print('Joe Bloggs')
+        brth_dt = datetime.datetime(1989, 6, 30)
+        strt_dt = datetime.datetime(2010, 3, 27)
+        wk_py = 67307.69
+        print(calc.calculate_redundancy(brth_dt, strt_dt, wk_py))
+        print('!!!!!!!!!!!!!!!!!!!!!!!')
+        self.assertEqual( calc.calculate_redundancy(brth_dt, strt_dt, wk_py), 639422)
 
 
 if __name__=="__main__":
