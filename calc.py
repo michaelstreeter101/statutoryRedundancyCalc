@@ -6,7 +6,7 @@ def add_years(d, years):
     try:
         return d.replace(year = d.year + years)
     except ValueError: # 29 Feb, 31 Sep etc.
-        return d + (date(d.year + years, 1, 1) - date(d.year, 1, 1))
+        return d + (datetime.datetime.date(d.year + years, 1, 1) - datetime.datetime.date(d.year, 1, 1))
 
 
 def calculate_redundancy(brth_dt, strt_dt, wk_py, rdndnt_dt = datetime.datetime(2020, 9, 5)):
@@ -18,7 +18,7 @@ def calculate_redundancy(brth_dt, strt_dt, wk_py, rdndnt_dt = datetime.datetime(
     
     NB: wk_pay is an integer number of pennies, handled internally as tenths!"""
 
-    tdy_dt = datetime.datetime.today() # Note: not used in the calculation; only used to supress printing of future dates.
+    tdy_dt = datetime.datetime.today() # Note: not used in the calculation; only used to suppress printing of future dates.
     print('Born: {}'.format(brth_dt.strftime("%d %b %Y")))
 
     brth21_dt = add_years(brth_dt, 21) # Note: this variable is not used anywhere else.
@@ -41,6 +41,8 @@ def calculate_redundancy(brth_dt, strt_dt, wk_py, rdndnt_dt = datetime.datetime(
     srvc = (rdndnt_dt-strt_dt).days//365
     print('You have {} complete years of service'.format(srvc))
 
+    print('Your average weekly pay is: £{}'.format(wk_py/100))
+
     print('Assuming your position becomes redundant on {}, the payout would be calculated as follows...'.format(rdndnt_dt.strftime("%d %b %Y")))
 
     tot_ent = 0 # return Value
@@ -53,7 +55,7 @@ def calculate_redundancy(brth_dt, strt_dt, wk_py, rdndnt_dt = datetime.datetime(
         # One week's pay for each full year you were 22 or older and under 41, and
         # 1 1/2 week's pay for each full year you were 41 or older.
 
-        # First off, convert wk_py from an ingeger number of pennies, to tenths of a penny.
+        # First off, convert wk_py from an integer number of pennies, to tenths of a penny.
         wk_py = int(wk_py * 10)
 
         curr_year = strt_dt
@@ -81,12 +83,11 @@ def calculate_redundancy(brth_dt, strt_dt, wk_py, rdndnt_dt = datetime.datetime(
     return int(tot_ent/10) # Convert from tenths of a penny, back into pennies
 
 def main():
-    print('Michael')
-    brth_dt = datetime.datetime(1970, 3, 30)
-    strt_dt = datetime.datetime(2018, 10, 14)
-    wk_py = 101300
+    print('Joe Bloggs')
+    brth_dt = datetime.datetime(1989, 6, 30)
+    strt_dt = datetime.datetime(2010, 3, 27)
+    wk_py = 67307.69 # £637.0769 per week, in pennies.
     calculate_redundancy(brth_dt, strt_dt, wk_py)
-
 
 if __name__=="__main__":
     main()
