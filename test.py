@@ -4,7 +4,6 @@ import calc
 
 class TestExMethods(unittest.TestCase):
     """docstring for TestExMethods."""
-    rdndnt_dt = datetime.datetime(2020, 9, 5)
 
     def test_add_years(self):
         print('test_add_years')
@@ -15,26 +14,17 @@ class TestExMethods(unittest.TestCase):
 
     def test_michael(self):
         print('Michael')
-        brth_dt = datetime.datetime(1970, 3, 30)
-        strt_dt = datetime.datetime(2018, 10, 14)
-        wk_py = 101300 # This is a completely made up number
-        self.assertEqual( calc.calculate_redundancy(brth_dt, strt_dt, wk_py), 0)
+         # This is a completely made up number
+        self.assertEqual( calc.calculate_redundancy(rdndnt_dt = datetime.datetime(2020, 9, 25), curr_age = 50, curr_yr = 1, wk_py = 101300), 0)
 
     def test_vincent(self):
         print('Vincent')
-        brth_dt = datetime.datetime(1972, 3, 30)
-        strt_dt = datetime.datetime(2011, 3, 27)
-        wk_py = 120100
-        self.assertEqual( calc.calculate_redundancy(brth_dt, strt_dt, wk_py), 1501250)
+        self.assertEqual( calc.calculate_redundancy(rdndnt_dt = datetime.datetime(2020, 9, 25), curr_age = 49, curr_yr = 10, wk_py = 120100), 1741450)
 
     def test_joe(self):
         print('Joe Bloggs')
-        brth_dt = datetime.datetime(1989, 6, 30)
-        strt_dt = datetime.datetime(2010, 3, 27)
-        wk_py = 67307.69
-        print(calc.calculate_redundancy(brth_dt, strt_dt, wk_py))
         print('!!!!!!!!!!!!!!!!!!!!!!!')
-        self.assertEqual( calc.calculate_redundancy(brth_dt, strt_dt, wk_py), 639422)
+        self.assertEqual( calc.calculate_redundancy(rdndnt_dt = datetime.datetime(2020, 9, 25), curr_age = 29, curr_yr = 10, wk_py = 67307.69), 639422)
 
 
 if __name__=="__main__":
